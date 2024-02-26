@@ -1,23 +1,3 @@
-// FORMULA PARA CONVERTIR FECHA
-// var ingresoDesordenada = prompt("Ingresa la fecha de pago DD/MM/AAAA");
-// console.log(ingresoDesordenada)
-
-// const fechaOrdenada = [];
-// function ordenarfecha(ingresoDesordenada) {
-//     let dia = ingresoDesordenada.substr(0, 2);
-//     let mes = ingresoDesordenada.substr(3, 2);
-//     let anio = ingresoDesordenada.substr(6, 4);
-//     let resultado = anio+"/"+mes+"/"+dia;
-//     fechaOrdenada.push(resultado)
-//     return fechaOrdenada
-// }
-// ordenarfecha(ingresoDesordenada);
-
-// console.log(fechaOrdenada[0]);
-
-// fechaOperacion = new Date(fechaOrdenada[0]);
-// console.log(fechaOperacion);
-
 //LOGIN
 let user1 = "drazeer";
 let pass1 = "123";
@@ -71,7 +51,7 @@ class Cheque {
         this.netoChequeDif = netoChequeDif;
     }
 }
-// CHEQUE DE EJEMPLO
+// CHEQUE PRECARGADO DE EJEMPLO
 cheques.push(new Cheque(
     id = 0,
     fechaHoy = fechaOp,
@@ -188,3 +168,24 @@ for (i = 0; i < chequesMas360.length; i++) {
 
 let totalFinal = totalNetosChDferidos + totalNetosChDAlDia;
 console.log("El TOTAL A RECIBR ES DE: $" + totalFinal);
+
+
+// FORMULA PARA CONVERTIR FECHA
+// var ingresoDesordenada = prompt("Ingresa la fecha de pago DD/MM/AAAA");
+// console.log(ingresoDesordenada)
+
+// const fechaOrdenada = [];
+// function ordenarfecha(ingresoDesordenada) {
+//     let dia = ingresoDesordenada.substr(0, 2);
+//     let mes = ingresoDesordenada.substr(3, 2);
+//     let anio = ingresoDesordenada.substr(6, 4);
+//     let resultado = anio+"/"+mes+"/"+dia;
+//     fechaOrdenada.push(resultado)
+//     return fechaOrdenada
+// }
+// ordenarfecha(ingresoDesordenada);
+
+// console.log(fechaOrdenada[0]);
+
+// fechaOperacion = new Date(fechaOrdenada[0]);
+// console.log(fechaOperacion);
