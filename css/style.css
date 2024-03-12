@@ -96,7 +96,7 @@
 
 .chequesclass input {
     color: var(--color-black1);
-    max-width: 18vh;
+    max-width: 50vh;
     font-size: 1.20rem;
     display: inline-block;
     margin: 5px 30px;
@@ -112,15 +112,16 @@ div.botones  {
 }
 
 button.btnsimular {
-    max-width: 25vh;
+    min-width: 10vh;
+    max-width: 40vh;
     font-size: 1.2rem;
     display: inline-block;
     margin: 0px 10px 5px 10px;
-    padding: 0px 3px;
+    padding: 5px 3px;
 }
 
 button.btnlimpiar {
-    max-width: 25vh;
+    max-width: 40vh;
     font-size: 1.2rem;
     display: inline-block;
     margin: 0px 10px 5px 10px;

@@ -128,23 +128,19 @@ btnCalc.addEventListener("click", () => {
         };
         cheques.push(chequeCargado);
     }
-    console.log(cheques);
+
     //SEPARO CHEQUES DIFERIDOS
     const chequesDiferidos = cheques.filter(
         (chequeDiferido) =>
             chequeDiferido.fechaPagoParsed > chequeDiferido.fechaHoyParsed &&
             chequeDiferido.netoChequeDif > 0
     );
-    console.log("Listado de cheques DIFERIDOS");
-    console.log(chequesDiferidos);
     //SEPARO CHEQUES AL DIA
     const chequesAlDia = cheques.filter(
         (chequeAlDia) =>
             chequeAlDia.fechaPagoParsed <= chequeAlDia.fechaHoyParsed &&
             chequeAlDia.fechaPagoParsed >= chequeAlDia.fechaHoyParsed - 30
     );
-    console.log("Listado de cheques AL DIA");
-    console.log(chequesAlDia);
     //SEPARO CHEQUES DEMASIADO LARGOS PARA DESCONTAR - DAN UN NETO NEGATIVO
     const chequesNegativos = cheques.filter(
         (chequeNegativo) =>
@@ -152,23 +148,17 @@ btnCalc.addEventListener("click", () => {
             (chequeNegativo.netoChequeDif <= 0) &&
             (chequeNegativo.plazo <= 360)
     );
-    console.log("Listado de cheques DEMASIADO LARGOS PARA DESCONTAR");
-    console.log(chequesNegativos);
     //SEPARO CHEQUES +360 DIAS - NO SON CHEQUES VALIDOS
     const chequesMas360 = cheques.filter(
         (chequesMas360) =>
             chequesMas360.fechaPagoParsed > chequesMas360.fechaHoyParsed &&
             chequesMas360.plazo > 360
     );
-    console.log("Listado de cheques que exceden los 360 DIAS");
-    console.log(chequesMas360);
     //SEPARO CHEQUES VENCIDOS
     const chequesVencidos = cheques.filter(
         (chequeVencido) =>
             chequeVencido.fechaPagoParsed <= chequeVencido.fechaHoyParsed - 30
     );
-    console.log("Listado de cheques VENCIDOS");
-    console.log(chequesVencidos);
 
     // DONDE AGREGO AL RESULTADO HIJO
     const aceptado = document.getElementById("resultadospadre")
@@ -189,11 +179,9 @@ btnCalc.addEventListener("click", () => {
         aceptado.append(contenedor);
     }
     // SUMO EL TOTAL POR CHEQUES DIFERIDOS
-    let totalNetosChDferidos = netosChDferidos.reduce((a, b) => a + b, 0);
-    console.log(
-        "El total a recibir por el descuento de cheques DIFERIDOS es de: $" +
-        totalNetosChDferidos
-    );
+
+
+
 
     //RECORRO EL ARRAY DE CHEQUES AL DIA
     const netosChAlDia = [];
@@ -211,12 +199,11 @@ btnCalc.addEventListener("click", () => {
         aceptado.append(contenedor);
     }
     // SUMO EL TOTAL POR CHEQUES AL DIA
-    let totalNetosChDAlDia = netosChAlDia.reduce((a, b) => a + b, 0);
-    console.log(
-        "El total a recibir por el descuento de cheques AL DIA es de: $" +
-        totalNetosChDAlDia
-    );
 
+
+
+
+    
     //RECORRO EL ARRAY DE CHEQUES DEMASIADO LARGOS
     for (chequeCargado of chequesNegativos) {
         let contenedor = document.createElement("div");
