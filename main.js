@@ -29,18 +29,77 @@ const chequeObjeto = {
     netoChequeDif: "",
 }
 
-//BOTON LIMPIAR
-const btnReset = document.getElementById("reset")
-btnReset.addEventListener("click", () => {
-    const classCheques = document.querySelectorAll(".chequesclass");
-    const numCheques = classCheques.length;
-    for (let i = 0; i < numCheques; i++) {
-        let inputID = document.getElementById(`identificador${i}`);
-        inputID.value = "";
-        cheques.length = 0;
-    }
-    console.log(cheques);
+//BOTON AGREGAR CHEQUE
+//NUMERO DE CHEQUE
+let contarCheque = 1;
+
+const btnagregar = document.getElementById("agregar")
+btnagregar.addEventListener("click", () => {
+    let nuevoCheque = document.createElement("div");
+    nuevoCheque.setAttribute("class", "chequesclass");
+
+    // CREA EL INPUT DE ID
+    let IDinput = document.createElement("input");
+    IDinput.setAttribute("type", "number");
+    IDinput.setAttribute("id", "identificador" + contarCheque);
+    IDinput.setAttribute("placeholder", "Identificador");
+    IDinput.setAttribute("required", "");
+    nuevoCheque.appendChild(IDinput);
+
+    // CREA EL INPUT DE FECHA DE PAGO
+    let FPagoinput = document.createElement("input");
+    FPagoinput.setAttribute("type", "date");
+    FPagoinput.setAttribute("id", "fpagoid" + contarCheque);
+    FPagoinput.setAttribute("required", "");
+    nuevoCheque.appendChild(FPagoinput);
+
+    // CREA EL INPUT DE IMPORTE
+    let Importeinput = document.createElement("input");
+    Importeinput.setAttribute("type", "number");
+    Importeinput.setAttribute("id", "importeid" + contarCheque);
+    Importeinput.setAttribute("placeholder", "Importe");
+    Importeinput.setAttribute("required", "");
+    nuevoCheque.appendChild(Importeinput);
+
+    // BOTON ELIMINAR
+    let btnEliminar = document.createElement("button");
+    btnEliminar.setAttribute("id", "agregar");
+    btnEliminar.textContent = "Eliminar";
+    btnEliminar.onclick = function () {
+        eliminarElemento(nuevoCheque);
+    };
+    nuevoCheque.appendChild(btnEliminar);
+
+    // AGREGAR EL CHEQUE EN EL CONTENEDOR
+    let contenedorPadre = document.getElementById("contenedorPadre");
+    contenedorPadre.appendChild(nuevoCheque);
+    contarCheque++;
+
+    //ELIMINA ELEMENTO
+    function eliminarElemento(el) {
+        let contenedorPadre = document.getElementById("contenedorPadre");
+    contenedorPadre.removeChild(el);
+    contarCheque--;
+}
 })
+
+// BOTON LIMPIAR
+const btnLimpiar = document.getElementById("limpiar");
+btnLimpiar.addEventListener("click", limpiarResultados);
+function limpiarResultados() {
+    // LIMPIAR INPUTS
+    const inputs = document.querySelectorAll('input[type="number"], input[type="date"]');
+    inputs.forEach(input => input.value = '');
+    // LIMPIAR RESULTADOS
+    const resultadoPadre = document.getElementById("resultadospadre");
+    resultadoPadre.innerHTML = '';
+    const noAceptadosPadre = document.getElementById("noaceptados");
+    noAceptadosPadre.innerHTML = '';
+    // LIMPIAR ARRAY
+    cheques.length = 0;
+    contarCheque = 1; 
+}
+
 
 //BOTON CALCULAR
 const btnCalc = document.getElementById("input");
@@ -89,9 +148,9 @@ btnCalc.addEventListener("click", () => {
     //SEPARO CHEQUES DEMASIADO LARGOS PARA DESCONTAR - DAN UN NETO NEGATIVO
     const chequesNegativos = cheques.filter(
         (chequeNegativo) =>
-            chequeNegativo.fechaPagoParsed > chequeNegativo.fechaHoyParsed &&
-            chequeNegativo.netoChequeDif <= 0 &&
-            chequeNegativo.plazo <= 360
+            (chequeNegativo.fechaPagoParsed > chequeNegativo.fechaHoyParsed) &&
+            (chequeNegativo.netoChequeDif <= 0) &&
+            (chequeNegativo.plazo <= 360)
     );
     console.log("Listado de cheques DEMASIADO LARGOS PARA DESCONTAR");
     console.log(chequesNegativos);
@@ -111,20 +170,24 @@ btnCalc.addEventListener("click", () => {
     console.log("Listado de cheques VENCIDOS");
     console.log(chequesVencidos);
 
+    // DONDE AGREGO AL RESULTADO HIJO
+    const aceptado = document.getElementById("resultadospadre")
+    const noAceptado = document.getElementById("noaceptados")
     //RECORRO EL ARRAY DE CHEQUES DIFERIDOS
     const netosChDferidos = [];
-const agregado = document.getElementById("resultados")
-for (chequeCargado of chequesDiferidos) {
-    let contenedor =  document.createElement("div");
-    contenedor.innerHTML = `<h3>Identificador: ${chequeCargado.id}</h3>
-                            <p>Fecha de Pago: ${chequeCargado.fechaPago}</p>
-                            <p>Plazo: ${chequeCargado.plazo} dias</p>
-                            <p>Importe: $${chequeCargado.importe}</p>
-                            <p>Intereses: $${chequeCargado.interesPuro}</p>
-                            <p>Comisión: $${chequeCargado.comChDiferido}</p>
-                            <p>Importe a recibir: $${chequeCargado.netoChequeDif}</p>`
-    agregado.append(contenedor);
-}
+    for (chequeCargado of chequesDiferidos) {
+        let contenedor = document.createElement("div");
+        contenedor.innerHTML = `<div class="resultadocheque">
+                                <p>Identificador: ${chequeCargado.id}</p>
+                                <p>Fecha de Pago: ${chequeCargado.fechaPago}</p>
+                                <p>Plazo: ${chequeCargado.plazo} dias</p>
+                                <p>Importe: $${chequeCargado.importe}</p>
+                                <p>Intereses: $${chequeCargado.interesPuro}</p>
+                                <p>Comisión: $${chequeCargado.comChDiferido}</p>
+                                <p>Importe a recibir: $${chequeCargado.netoChequeDif}</p>
+                                </div>`
+        aceptado.append(contenedor);
+    }
     // SUMO EL TOTAL POR CHEQUES DIFERIDOS
     let totalNetosChDferidos = netosChDferidos.reduce((a, b) => a + b, 0);
     console.log(
@@ -132,19 +195,20 @@ for (chequeCargado of chequesDiferidos) {
         totalNetosChDferidos
     );
 
-
     //RECORRO EL ARRAY DE CHEQUES AL DIA
     const netosChAlDia = [];
     for (chequeCargado of chequesAlDia) {
-        let contenedor =  document.createElement("div");
-        contenedor.innerHTML = `<h3>Identificador: ${chequeCargado.id}</h3>
+        let contenedor = document.createElement("div");
+        contenedor.innerHTML = `<div class="resultadocheque">
+                                <p>Identificador: ${chequeCargado.id}</p>
                                 <p>Fecha de Pago: ${chequeCargado.fechaPago}</p>
                                 <p>Plazo: ${chequeCargado.plazo} dias</p>
                                 <p>Importe: $${chequeCargado.importe}</p>
                                 <p>Intereses: $0</p>
                                 <p>Comisión: $${chequeCargado.comChAlDia}</p>
-                                <p>Importe a recibir: $${chequeCargado.netoChAlDia}</p>`
-        agregado.append(contenedor);
+                                <p>Importe a recibir: $${chequeCargado.netoChAlDia}</p>
+                                </div>`
+        aceptado.append(contenedor);
     }
     // SUMO EL TOTAL POR CHEQUES AL DIA
     let totalNetosChDAlDia = netosChAlDia.reduce((a, b) => a + b, 0);
@@ -155,34 +219,39 @@ for (chequeCargado of chequesDiferidos) {
 
     //RECORRO EL ARRAY DE CHEQUES DEMASIADO LARGOS
     for (chequeCargado of chequesNegativos) {
-        let contenedor =  document.createElement("div");
-        contenedor.innerHTML = `<h3>Cheques no aceptados:</h3>
-                                <h3>Identificador: ${chequeCargado.id}</h3>
+        let contenedor = document.createElement("div");
+        contenedor.innerHTML = `<div class="resultadocheque">
+                                <h3>No aceptados: </h3>
+                                <p>Identificador: ${chequeCargado.id}</p>
                                 <p>Fecha de Pago: ${chequeCargado.fechaPago}</p>
                                 <p>Plazo: ${chequeCargado.plazo} dias</p>
-                                <p>Importe: $${chequeCargado.importe}</p>`
-        agregado.append(contenedor);
+                                <p>Importe: $${chequeCargado.importe}</p>
+                                </div>`
+                                noAceptado.append(contenedor);
     }
     //RECORRO EL ARRAY DE CHEQUES +360 DIAS
     for (chequeCargado of chequesMas360) {
-        let contenedor =  document.createElement("div");
-        contenedor.innerHTML = `<h3>Los cheques superan los 360 dias</h3>
-                                <h3>Identificador: ${chequeCargado.id}</h3>
+        let contenedor = document.createElement("div");
+        contenedor.innerHTML = `<div class="resultadocheque">
+                                <h3>Mayor a 365 dias: </h3>
+                                <p>Identificador: ${chequeCargado.id}</p>
                                 <p>Fecha de Pago: ${chequeCargado.fechaPago}</p>
                                 <p>Plazo: ${chequeCargado.plazo} dias</p>
-                                <p>Importe: $${chequeCargado.importe}</p>`
-        agregado.append(contenedor);
+                                <p>Importe: $${chequeCargado.importe}</p>
+                                </div>`
+                                noAceptado.append(contenedor);
     }
     //RECORRO EL ARRAY DE CHEQUES VENCIDOS
     for (chequeCargado of chequesVencidos) {
-        let contenedor =  document.createElement("div");
-        contenedor.innerHTML = `<h3>Los cheques se encuentran Vencidos</h3>
-                                <h3>Identificador: ${chequeCargado.id}</h3>
+        let contenedor = document.createElement("div");
+        contenedor.innerHTML = `<div class="resultadocheque">
+                                <h3>Cheque Vencido: </h3>
+                                <p>Identificador: ${chequeCargado.id}</p>
                                 <p>Fecha de Pago: ${chequeCargado.fechaPago}</p>
-                                <p>Importe: $${chequeCargado.importe}</p>`
-        agregado.append(contenedor);
+                                <p>Importe: $${chequeCargado.importe}</p>
+                                </div>`
+                                noAceptado.append(contenedor);
     }
 })
-
 
 

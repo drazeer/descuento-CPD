@@ -62,13 +62,9 @@
 .ingreso-datos {
     background-color: var(--color-black2);
     background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 30vh;
+    height: 100%;
+    min-height: 50vh;
 }
 
 .ingreso-datos h1 {
@@ -82,39 +78,69 @@
 
 .ingreso-datos div {
     padding: 10px;
+}
+
+#div1 {
+    transform: translate(-7%, 0px)
+}
+
+.contenedorcheques {
+    color: var(--color-black1);
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.ingreso-datos p {
-    margin: 5px;
-    padding: 10px;
-    color: var(--color-red4);
-    font-size: 1.5rem;
-    font-weight: 10;
-    text-shadow: black 1px 1px 1px;
-}
-
-.ingreso-datos input {
+.chequesclass input {
     color: var(--color-black1);
-    font-size: 1.25rem;
+    max-width: 18vh;
+    font-size: 1.20rem;
+    display: inline-block;
+    margin: 5px 30px;
 }
 
-.ingreso-datos button {
-    margin: 5px;
-    padding: 5px;
-    color: var(--color-black1);
-    font-size: 1.25rem;
+div.botones  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
-/*!------RESULTS------*/
+button.btnsimular {
+    max-width: 25vh;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin: 0px 10px 5px 10px;
+    padding: 0px 3px;
+}
+
+button.btnlimpiar {
+    max-width: 25vh;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin: 0px 10px 5px 10px;
+    padding: 0px 3px;
+}
+
+#agregar {
+    max-width: 25vh;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin: 0px 10px 5px 10px;
+    padding: 0px 3px;
+}
+
+/*!------RESULTADOS------*/
 
 .results {
     width: 100%;
-    height: 25vh;
+    height: 100%;
+    min-height: 40vh;
     background-color: var(--color-red4);
     padding: 1rem;
     display: flex;
@@ -134,6 +160,34 @@ h2.results-h2 {
     padding-bottom: 0.25em;
 }
 
+
+div.resultadocheque {
+    background-color: #3a3d40;
+    color: var(--color-grey3);
+    padding: 0.5vh;
+    margin: 1vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+div.resultadocheque p {
+    border: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1.25rem;
+    font-weight: 10;
+    text-shadow: black 1px 1px 1px;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.5vh;
+    margin: 0.5vh;
+}
+
+
 /*!------FOOTER------*/
 
 footer {
@@ -148,28 +202,106 @@ footer {
 
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 854px) {
+/*!------NAVBAR------*/
     .navbar ul li a {
         font-size: 1rem;
         padding: 0.8rem;
     }
 
-    .welcome-section h1 {
-        font-size: 1.8rem;
-        font-weight: 700;
-        padding-bottom: 0.25em;
-    }
+/*!------INGRESO DE DATOS------*/
+.ingreso-datos {
+    width: 100%;
+    height: 100%;
+}
 
-    .welcome-section p {
-        font-size: 0.8rem;
-    }
+.ingreso-datos h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+
+.ingreso-datos div {
+    padding: 5px;
+}
+
+#div1 {
+    transform: translate(0%, 0%)
+}
+
+.chequesclass {
+    margin-bottom: 15px;
+}
+
+.chequesclass input {
+    max-width: 40vh;
+    font-size: 1.20rem;
+    margin: 5px;
+}
+
+div.chequesclass {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+div.botones  {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.botones button {
+    max-width: 25vh;
+    display: inline-block;
+}
+
+button.btnsimular {
+    font-size: 1.8rem;
+    margin: 5vh 5px;
+    padding: 3px 8px;
+}
+
+button.btnlimpiar {
+    font-size: 1.6rem;
+    max-width: 45vh;
+    margin: 5vh 5px;
+    padding: 3px 10px;
+}
+
+#agregar {
+    max-width: 25vh;
+    font-size: 1.2rem;
+
+    margin: 0px 10px 5px 10px;
+    padding: 0px 3px;
+}
+
+/*!------RESULTADOS------*/
 
     h2.results-h2 {
         font-size: 1.5rem;
         font-weight: 400;
     }
-    
 
+/*!------FOOTER------*/
     footer {
         font-size: 0.8rem;
         justify-content: center;

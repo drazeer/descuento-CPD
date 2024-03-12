@@ -2,15 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Gestión de Valor | Asesoramiento Financiero</title>
 </head>
 
 <body>
-
     <nav id="navbar" class="navbar">
         <ul>
             <li><a href="#ingreso-datos">Acerca de simulador</a></li>
@@ -19,38 +18,39 @@
     </nav>
 
     <section id="ingreso-datos" class="ingreso-datos">
-        <h1 id= "contenedorPadre" class="welcome-h1">Simulador de descuento de Cheques</h1>
-        <div class="chequesclass">
-            <p id="idHtml">Identificdor Interno</p>
-            <input id="identificador0" class="ident" type="number" required>
-            <p>Fecha de pago</p>
-            <input id="fpagoid0" class="fpagoclass" type="date" required>
-            <p>Importe</p>
-            <input id="importeid0" class="importeclass" type="number" required>
+        <h1 class="welcome-h1">Simulador de descuento de Cheques</h1>
+
+        <div id="contenedorPadre" class="contenedorcheques">
+            <div class="chequesclass" id="div1">
+                <input id="identificador0" type="number" placeholder="Identificador" />
+                <input id="fpagoid0" type="date" required />
+                <input id="importeid0" type="number" placeholder="Importe" required />
+            </div>
+        </div>
+
+        <div class="botones">
+            <button id="agregar" class="btnagregar">Nuevo Cheque</button>
+            <button id="input" class="btnsimular">Simular</button>
+            <button id="limpiar"class="btnlimpiar">Limpiar Resultados</button>
         </div>
     </section>
-    <div>
-        <button onclick="agregarElemento()">Agregar Nuevo Elemento</button>
-        <button id="input">CALCULAR</button>
-        <button id="reset">LIMPIAR</button>
-    </div>
 
     <section id="resultados" class="results">
         <h2 class="results-h2">Resultados de la simulación</h2>
-        <div id="contenedor" class="results-flex">
-            <!--CUADRO CON LOS RESULTADOS-->
-
+        <div id="resultadospadre" class="results-flex">
+            <!--CHEQUES ACEPTADOS-->
         </div>
-
+        <div id="noaceptados" class="results-flex">
+            <!--CHEQUES NO ACEPTADOS-->
+        </div>
+        
     </section>
-
-
 
     <footer>
         <p>Copyright © 2023 Gestión de Valor, All rights reserved.</p>
     </footer>
 
-    <!--ICONO FREECODECAMP-->
+    
     <script src="https://kit.fontawesome.com/552af8694f.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
