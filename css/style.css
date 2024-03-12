@@ -21,9 +21,7 @@
     --color-white1: #ffffff;
 }
 
-
 /*!------NAVBAR------*/
-
 
 .navbar {
     background-color: var(--color-red3);
@@ -59,9 +57,9 @@
     background: var(--color-black2);
 }
 
-/*!------ABOUT ME------*/
+/*!------INGRESO DE DATOS------*/
 
-.welcome-section {
+.ingreso-datos {
     background-color: var(--color-black2);
     background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
     display: flex;
@@ -73,29 +71,50 @@
     height: 30vh;
 }
 
-.welcome-section h1 {
+.ingreso-datos h1 {
     color: var(--color-grey3);
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: 800;
     padding-bottom: 0.25em;
     text-shadow: black 1px 1px 1px;
     text-align: center;
 }
 
-.welcome-section p {
+.ingreso-datos div {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingreso-datos p {
+    margin: 5px;
+    padding: 10px;
     color: var(--color-red4);
-    font-size: 1.2rem;
-    font-style: italic;
+    font-size: 1.5rem;
     font-weight: 10;
     text-shadow: black 1px 1px 1px;
 }
 
+.ingreso-datos input {
+    color: var(--color-black1);
+    font-size: 1.25rem;
+}
 
-/*!------PROJECTS------*/
+.ingreso-datos button {
+    margin: 5px;
+    padding: 5px;
+    color: var(--color-black1);
+    font-size: 1.25rem;
+}
 
-.projects {
+/*!------RESULTS------*/
+
+.results {
     width: 100%;
-    height: 100vh;
+    height: 25vh;
     background-color: var(--color-red4);
     padding: 1rem;
     display: flex;
@@ -106,7 +125,7 @@
     align-content: center;
 }
 
-h2.projects-h2 {
+h2.results-h2 {
     font-size: 2.5rem;
     font-weight: 500;
     text-align: center;
@@ -115,9 +134,7 @@ h2.projects-h2 {
     padding-bottom: 0.25em;
 }
 
-
-
-/*!------FFOTER------*/
+/*!------FOOTER------*/
 
 footer {
     border-top: 4px solid var(--color-black2);
@@ -130,7 +147,6 @@ footer {
     padding: 0.75rem;
 
 }
-
 
 @media screen and (max-width: 850px) {
     .navbar ul li a {
@@ -148,7 +164,7 @@ footer {
         font-size: 0.8rem;
     }
 
-    h2.projects-h2 {
+    h2.results-h2 {
         font-size: 1.5rem;
         font-weight: 400;
     }

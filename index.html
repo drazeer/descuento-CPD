@@ -13,21 +13,31 @@
 
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a href="#welcome-section">Acerca de simulador</a></li>
+            <li><a href="#ingreso-datos">Acerca de simulador</a></li>
             <li><a href="#resultados">Resultado</a></li>
         </ul>
     </nav>
 
-    <section id="welcome-section" class="welcome-section">
-        <h1 class="welcome-h1">Simulador de descuento de Cheques de Pago Diferido</h1>
-        <p>Ingresa la fecha de pago...</p>
-        <p>Ingresa el monto...</p>
-        <p>Ingresa el CUIT del librador...</p>
+    <section id="ingreso-datos" class="ingreso-datos">
+        <h1 id= "contenedorPadre" class="welcome-h1">Simulador de descuento de Cheques</h1>
+        <div class="chequesclass">
+            <p id="idHtml">Identificdor Interno</p>
+            <input id="identificador0" class="ident" type="number" required>
+            <p>Fecha de pago</p>
+            <input id="fpagoid0" class="fpagoclass" type="date" required>
+            <p>Importe</p>
+            <input id="importeid0" class="importeclass" type="number" required>
+        </div>
     </section>
+    <div>
+        <button onclick="agregarElemento()">Agregar Nuevo Elemento</button>
+        <button id="input">CALCULAR</button>
+        <button id="reset">LIMPIAR</button>
+    </div>
 
-    <section id="resultados" class="projects">
-        <h2 class="projects-h2">Resultados de la simulación</h2>
-        <div class="projects-flex">
+    <section id="resultados" class="results">
+        <h2 class="results-h2">Resultados de la simulación</h2>
+        <div id="contenedor" class="results-flex">
             <!--CUADRO CON LOS RESULTADOS-->
 
         </div>
