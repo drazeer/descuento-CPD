@@ -136,6 +136,14 @@ button.btnlimpiar {
     padding: 0px 3px;
 }
 
+button.eliminar {
+    max-width: 25vh;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin: 0px 10px 5px 10px;
+    padding: 0px 3px;
+}
+
 /*!------RESULTADOS------*/
 
 .results {
@@ -290,7 +298,6 @@ button.btnlimpiar {
 #agregar {
     max-width: 25vh;
     font-size: 1.2rem;
-
     margin: 0px 10px 5px 10px;
     padding: 0px 3px;
 }

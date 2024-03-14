@@ -10,106 +10,134 @@ let fechaOp = new Date();
 let fechaOp2 = Math.round(fechaOp / (1000 * 60 * 60 * 24));
 
 // ARRAY GENERAL DE CHEQUES
-const cheques = [];
-// FORMATO CHEQUE
-const chequeObjeto = {
-    id: "",
-    fechaHoy: "",
-    fechaHoyParsed: "",
-    fechaPago: "",
-    fechaPagoDateFormat: "",
-    fechaPagoParsed: "",
-    plazo: "",
-    importe: "",
-    netoChAlDia: "",
-    comChAlDia: "",
-    netoChequeIntereses: "",
-    interesPuro: "",
-    comChDiferido: "",
-    netoChequeDif: "",
-}
+let cheques = JSON.parse(localStorage.getItem('cheques')) || [];
 
-//BOTON AGREGAR CHEQUE
-//NUMERO DE CHEQUE
-let contarCheque = 1;
-
-const btnagregar = document.getElementById("agregar")
-btnagregar.addEventListener("click", () => {
+// LLENAMOS INPUTS
+function llenarInputs(cheque) {
     let nuevoCheque = document.createElement("div");
     nuevoCheque.setAttribute("class", "chequesclass");
 
-    // CREA EL INPUT DE ID
     let IDinput = document.createElement("input");
     IDinput.setAttribute("type", "number");
     IDinput.setAttribute("id", "identificador" + contarCheque);
-    IDinput.setAttribute("placeholder", "Identificador");
+    IDinput.setAttribute("value", cheque.id);
     IDinput.setAttribute("required", "");
     nuevoCheque.appendChild(IDinput);
 
-    // CREA EL INPUT DE FECHA DE PAGO
     let FPagoinput = document.createElement("input");
+    FPagoinput.setAttribute("type", "date");
+    FPagoinput.setAttribute("id", "fpagoid" + contarCheque);
+    FPagoinput.setAttribute("value", cheque.fechaPago);
+    FPagoinput.setAttribute("required", "");
+    nuevoCheque.appendChild(FPagoinput);
+
+    let Importeinput = document.createElement("input");
+    Importeinput.setAttribute("type", "number");
+    Importeinput.setAttribute("id", "importeid" + contarCheque);
+    Importeinput.setAttribute("value", cheque.importe);
+    Importeinput.setAttribute("required", "");
+    nuevoCheque.appendChild(Importeinput);
+
+    let btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "Eliminar";
+    btnEliminar.onclick = function () {
+        eliminarElemento(nuevoCheque, cheque);
+    };
+    nuevoCheque.appendChild(btnEliminar);
+
+    let contenedorPadre = document.getElementById("contenedorPadre");
+    contenedorPadre.appendChild(nuevoCheque);
+    contarCheque++;
+}
+
+function llenarInputsGuardados() {
+    cheques.forEach(cheque => llenarInputs(cheque));
+}
+
+//BOTON AGREGAR CHEQUE
+const btnagregar = document.getElementById("agregar")
+btnagregar.addEventListener("click", () => {
+
+});
+
+// BOTON LIMPIAR
+const btnLimpiar = document.getElementById("limpiar");
+btnLimpiar.addEventListener("click", limpiarResultados);
+function limpiarResultados() {
+    const contenedorPadre = document.getElementById("contenedorPadre");
+    const filasInput = document.querySelectorAll(".chequesclass:not(:first-child)");
+    filasInput.forEach(fila => fila.remove());
+    contarCheque = 1;
+    // LIMPIO LOCAL STORAGE
+    localStorage.removeItem('cheques');
+}
+
+//BOTON AGREGAR CHEQUE
+let contarCheque = 1;
+btnagregar.addEventListener("click", () => {
+    const contenedorPadre = document.getElementById("contenedorPadre");
+    const nuevoCheque = document.createElement("div");
+    nuevoCheque.setAttribute("class", "chequesclass");
+
+    const IDinput = document.createElement("input");
+    IDinput.setAttribute("type", "number");
+    IDinput.setAttribute("id", "identificador" + contarCheque);
+    IDinput.setAttribute("required", "");
+    nuevoCheque.appendChild(IDinput);
+
+    const FPagoinput = document.createElement("input");
     FPagoinput.setAttribute("type", "date");
     FPagoinput.setAttribute("id", "fpagoid" + contarCheque);
     FPagoinput.setAttribute("required", "");
     nuevoCheque.appendChild(FPagoinput);
 
-    // CREA EL INPUT DE IMPORTE
-    let Importeinput = document.createElement("input");
+    const Importeinput = document.createElement("input");
     Importeinput.setAttribute("type", "number");
     Importeinput.setAttribute("id", "importeid" + contarCheque);
-    Importeinput.setAttribute("placeholder", "Importe");
     Importeinput.setAttribute("required", "");
     nuevoCheque.appendChild(Importeinput);
 
-    // BOTON ELIMINAR
-    let btnEliminar = document.createElement("button");
-    btnEliminar.setAttribute("id", "agregar");
+    const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
     btnEliminar.onclick = function () {
         eliminarElemento(nuevoCheque);
     };
     nuevoCheque.appendChild(btnEliminar);
 
-    // AGREGAR EL CHEQUE EN EL CONTENEDOR
-    let contenedorPadre = document.getElementById("contenedorPadre");
     contenedorPadre.appendChild(nuevoCheque);
     contarCheque++;
+});
 
-    //ELIMINA ELEMENTO
-    function eliminarElemento(el) {
-        let contenedorPadre = document.getElementById("contenedorPadre");
-        contenedorPadre.removeChild(el);
-        contarCheque--;
-    }
-})
-
-// BOTON LIMPIAR
-const btnLimpiar = document.getElementById("limpiar");
-btnLimpiar.addEventListener("click", limpiarResultados);
-function limpiarResultados() {
-    // LIMPIAR INPUTS
-    const inputs = document.querySelectorAll('input[type="number"], input[type="date"]');
-    inputs.forEach(input => input.value = '');
-    // LIMPIAR RESULTADOS
-    const resultadoPadre = document.getElementById("resultadospadre");
-    resultadoPadre.innerHTML = '';
-    const noAceptadosPadre = document.getElementById("noaceptados");
-    noAceptadosPadre.innerHTML = '';
-    // LIMPIAR ARRAY
-    cheques.length = 0;
-    contarCheque = 1;
+function eliminarElemento(el) {
+    el.remove();
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    llenarInputsGuardados();
+});
 
 //BOTON CALCULAR
 const btnCalc = document.getElementById("input");
 btnCalc.addEventListener("click", () => {
+    // LIMPIO EL HTML DE RESULTADOS PARA CADA NUEVA SIMULACION
+    const resultadosPadre = document.getElementById("resultadospadre");
+    resultadosPadre.innerHTML = "";
+
+    const noAceptadosPadre = document.getElementById("noaceptados");
+    noAceptadosPadre.innerHTML = "";
     const classCheques = document.querySelectorAll(".chequesclass");
     const numCheques = classCheques.length;
+    const cheques = [];
     for (let i = 0; i < numCheques; i++) {
         const inputID = document.getElementById(`identificador${i}`);
         const inputFechaPago = document.getElementById(`fpagoid${i}`);
         const inputImporte = document.getElementById(`importeid${i}`);
+
+        // PRECARGAR LOS CHQUES SOLO EN LOS CAMPOS VACIOS
+        if (!inputID.value || !inputFechaPago.value || !inputImporte.value) {
+            continue;
+        }
+
         const chequeCargado = {
             id: inputID.value,
             fechaHoy: fechaOp,
@@ -128,6 +156,9 @@ btnCalc.addEventListener("click", () => {
         };
         cheques.push(chequeCargado);
     }
+
+    // GUARDO LOS CHQUES EN EL LOCALSTORAGE
+    localStorage.setItem('cheques', JSON.stringify(cheques));
 
     //SEPARO CHEQUES DIFERIDOS
     const chequesDiferidos = cheques.filter(
@@ -246,6 +277,4 @@ btnCalc.addEventListener("click", () => {
     const totalFinal = document.createElement("div");
     totalFinal.innerHTML = `<p>TOTAL DE LA OPERACION: $${totalOperacion}</p>`;
     aceptado.appendChild(totalFinal);
-})
-
-
+});
