@@ -40,6 +40,7 @@ function llenarInputs(cheque) {
 
     let btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
+    btnEliminar.className = "eliminar";
     btnEliminar.onclick = function () {
         eliminarElemento(nuevoCheque, cheque);
     };
@@ -64,13 +65,25 @@ btnagregar.addEventListener("click", () => {
 const btnLimpiar = document.getElementById("limpiar");
 btnLimpiar.addEventListener("click", limpiarResultados);
 function limpiarResultados() {
-    const contenedorPadre = document.getElementById("contenedorPadre");
+    // LIMPIO LOS INPUTS DE LA PRIMERA FILA
+    const primerFilaInputs = document.querySelectorAll(".chequesclass:first-child input");
+    primerFilaInputs.forEach(input => input.value = "");
+
+    // RESTABLEZCO TODO A 1 FILA
     const filasInput = document.querySelectorAll(".chequesclass:not(:first-child)");
     filasInput.forEach(fila => fila.remove());
     contarCheque = 1;
+
     // LIMPIO LOCAL STORAGE
     localStorage.removeItem('cheques');
+
+    // LIMPIO HTML
+    const resultadosPadre = document.getElementById("resultadospadre");
+    resultadosPadre.innerHTML = "";
+    const noAceptados = document.getElementById("noaceptados");
+    noAceptados.innerHTML = "";
 }
+
 
 //BOTON AGREGAR CHEQUE
 let contarCheque = 1;
@@ -99,6 +112,7 @@ btnagregar.addEventListener("click", () => {
 
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
+    btnEliminar.className = "eliminar";
     btnEliminar.onclick = function () {
         eliminarElemento(nuevoCheque);
     };
