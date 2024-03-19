@@ -8,7 +8,7 @@ loginForm.addEventListener("submit", function (event) {
     const password = document.getElementById("password").value;
 
     // Cargar los datos de usuarios desde el archivo JSON
-    fetch('../db/usersdb.json')
+    fetch('./db/usersdb.json')
         .then(response => response.json())
         .then(users => {
             // Buscar el usuario en la lista de usuarios
