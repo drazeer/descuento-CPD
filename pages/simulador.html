@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Gestión de Valor | Asesoramiento Financiero</title>
+</head>
+
+<body>
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="#ingreso-datos">Ingreso de Datos</a></li>
+            <li><a href="#resultados">Resultado</a></li>
+        </ul>
+    </nav>
+
+    <section id="ingreso-datos" class="ingreso-datos">
+        <h1 class="welcome-h1">Simulador de descuento de Cheques</h1>
+
+        <div id="contenedorPadre" class="contenedorcheques">
+        </div>
+
+        <div class="botones">
+            <button id="agregar" class="btnagregar">Nuevo Cheque</button>
+            <button id="calcular" class="btnsimular">Simular</button>
+            <button id="limpiar"class="btnlimpiar">Limpiar Datos</button>
+        </div>
+    </section>
+
+    <section id="resultados" class="results">
+        <h2 class="results-h2">Resultados de la simulación</h2>
+        <div id="resultadospadre" class="results-flex">
+            <!--CHEQUES ACEPTADOS-->
+        </div>
+        <div id="noaceptados" class="results-flex">
+            <!--CHEQUES NO ACEPTADOS-->
+        </div>
+        
+    </section>
+
+    <footer>
+        <p>Copyright © 2023 Gestión de Valor, All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/552af8694f.js" crossorigin="anonymous"></script>
+    <script src="/scripts/main.js"></script>
+    
+</body>
+
+</html>
