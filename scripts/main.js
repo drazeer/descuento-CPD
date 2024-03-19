@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para cerrar sesión
     function cerrarSesion() {
         localStorage.removeItem('loggedInUser');
-        window.location.href = "/index.html"; // Redirigir al usuario al index.html
+        window.location.href = "./index.html"; // Redirigir al usuario al index.html
     }
 
     // Verificar si el usuario está autenticado

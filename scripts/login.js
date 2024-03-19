@@ -28,7 +28,7 @@ loginForm.addEventListener("submit", function (event) {
 
                 // Redirigir a la página principal después de un breve retraso
                 setTimeout(() => {
-                    window.location.href = "/pages/simulador.html";
+                    window.location.href = "./pages/simulador.html";
                 }, 1500);
             } else {
                 // Usuario no encontrado, mostrar mensaje de error
