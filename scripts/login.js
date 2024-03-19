@@ -8,7 +8,7 @@ loginForm.addEventListener("submit", function (event) {
     const password = document.getElementById("password").value;
 
     // Cargar los datos de usuarios desde el archivo JSON
-    fetch('./db/usersdb.json')
+    fetch('./usersdb.json')
         .then(response => response.json())
         .then(users => {
             // Buscar el usuario en la lista de usuarios
@@ -28,7 +28,7 @@ loginForm.addEventListener("submit", function (event) {
 
                 // Redirigir a la página principal después de un breve retraso
                 setTimeout(() => {
-                    window.location.href = "./pages/simulador.html";
+                    window.location.href = "../pages/simulador.html";
                 }, 1500);
             } else {
                 // Usuario no encontrado, mostrar mensaje de error
