@@ -120,7 +120,6 @@
     left: 0;
     width: 100%;
     z-index: 100;
-
 }
 
 .navbar ul {
@@ -366,8 +365,8 @@ thead {
 #resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(4),
 #resultadospadre>div:nth-child(2)>table>thead>tr>th:nth-child(4),
 #noaceptados>div>table>thead>tr>th:nth-child(4) {
-    max-width: 5vh;
-    min-width: 4vh;
+    max-width: 6vh;
+    min-width: 5vh;
 }
 
 #resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(5),
@@ -376,7 +375,6 @@ thead {
     max-width: 13vh;
     min-width: 10vh;
 }
-
 
 tbody {
     tr {
@@ -424,10 +422,28 @@ footer {
 @media screen and (max-width: 854px) {
 
     /*!------NAVBAR------*/
-    .navbar ul li a {
-        font-size: 1rem;
-        padding: 0.8rem;
+    
+    .navbar {
+        justify-content: center;
     }
+    
+    .navbar ul li a {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.5rem;
+    }
+
+    #navbar>li:nth-child(2)>span {
+        font-weight: 500;
+        font-size: 0.8rem;
+        padding: 0.8rem 0.5rem;
+    }
+    
+    #navbar>li:nth-child(3)>button {
+        font-weight: 500;
+        font-size: 0.8rem;
+        padding: 0.8rem 0.5rem;
+    }
+    
 
     /*!------INGRESO DE DATOS------*/
     .ingreso-datos {
