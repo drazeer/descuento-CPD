@@ -1,4 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /*!------RESET------*/
@@ -159,16 +158,16 @@
 #navbar>li:nth-child(3)>button {
     display: block;
     border-style: none;
-    background-color: var(--color-red3);
-    text-decoration: none;
     color: var(--color-grey3);
+    background-color: var(--color-black2);
+    text-decoration: none;
     font-size: 1.2rem;
     font-weight: 500;
     padding: 1rem;
 }
 
 #navbar>li:nth-child(3)>button:hover {
-    background: var(--color-black2);
+    background-color: var(--color-red3);
 }
 
 
@@ -198,15 +197,31 @@
 }
 
 .ingreso-datos div {
-    padding: 10px;
+    padding: 2px;
 }
 
-#div1 {
-    transform: translate(-7%, 0px)
+.chequesclass {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
 }
 
-.contenedorcheques {
+.chequesclass input {
     color: var(--color-black1);
+    font-size: 1.20rem;
+    margin: 5px 30px;
+    text-align: center;
+}
+
+.chequesclass input:focus {
+    background-color: var(--color-red4);
+    color: var(--color-grey3);
+}
+
+.busqueda-container {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
@@ -215,13 +230,33 @@
     align-items: center;
 }
 
-.chequesclass input {
-    color: var(--color-black1);
-    max-width: 50vh;
-    font-size: 1.20rem;
-    display: inline-block;
-    margin: 5px 30px;
+.id-input {
+    max-width: 15vh;
 }
+
+.busqueda-banco {
+    max-width: 25vh;
+}
+
+.input-container {
+    display: inline-block;
+}
+
+.lista-resultados li {
+    min-width: 10vh;
+    padding: 0.1vh 0.5vh;
+    font-size: 1.1rem;;
+    list-style: none;
+    background-color: var(--color-grey3);
+    border: solid 1px var(--color-grey3);
+    border-radius: 2%;
+}
+
+.lista-resultados li:hover {
+    background-color: var(--color-red4);
+    color: var(--color-grey3);
+}
+
 
 div.botones {
     display: flex;
@@ -235,34 +270,72 @@ div.botones {
 button.btnsimular {
     min-width: 10vh;
     max-width: 40vh;
+    display: block;
+    border-style: none;
+    color: var(--color-grey3);
+    background-color: var(--color-red3);
+    text-decoration: none;
     font-size: 1.2rem;
-    display: inline-block;
+    font-weight: 500;
+    padding: 1rem;
     margin: 0px 10px 5px 10px;
-    padding: 5px 3px;
+}
+
+button.btnsimular:hover {
+    background-color: var(--color-black2);
 }
 
 button.btnlimpiar {
+    min-width: 10vh;
     max-width: 40vh;
+    display: block;
+    border-style: none;
+    color: var(--color-grey3);
+    background-color: var(--color-red3);
+    text-decoration: none;
     font-size: 1.2rem;
-    display: inline-block;
+    font-weight: 500;
+    padding: 1rem;
     margin: 0px 10px 5px 10px;
-    padding: 0px 3px;
+}
+
+button.btnlimpiar:hover {
+    background-color: var(--color-black2);
 }
 
 #agregar {
-    max-width: 25vh;
+    min-width: 10vh;
+    max-width: 40vh;
+    display: block;
+    border-style: none;
+    color: var(--color-grey3);
+    background-color: var(--color-red3);
+    text-decoration: none;
     font-size: 1.2rem;
-    display: inline-block;
+    font-weight: 500;
+    padding: 1rem;
     margin: 0px 10px 5px 10px;
-    padding: 0px 3px;
+}
+
+#agregar:hover {
+    background-color: var(--color-black2);
 }
 
 button.eliminar {
     max-width: 25vh;
-    font-size: 1.1rem;
-    display: inline-block;
+    display: block;
+    border-style: none;
+    color: var(--color-grey3);
+    background-color: var(--color-red3);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
     margin: 0px 10px 5px 10px;
-    padding: 0px 3px;
+    padding: 0.3vh;
+}
+
+button.eliminar:hover {
+    background-color: var(--color-black2);
 }
 
 /*!------RESULTADOS------*/
@@ -290,6 +363,27 @@ h2.results-h2 {
     padding-bottom: 0.25em;
 }
 
+
+h3.results-h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-grey3);
+    text-shadow: black 1px 1px 1px;
+    padding-bottom: 0.25em;
+}
+
+h4 {
+    background-color: #3a3d40;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-grey3);
+    text-shadow: var(--color-grey1) 1px 1px 1px;
+    padding: 0.4em;
+    margin: 1.6em 1em;
+    ;
+}
 
 .containertablas {
     position: relative;
@@ -333,47 +427,53 @@ thead {
 }
 
 
-/* Estilos comunes para los encabezados de tabla */
 #resultadospadre>div>table>thead>tr>th,
 #noaceptados>div>table>thead>tr>th {
     max-width: 15vh;
-    min-width: 10vh;
+    min-width: 8vh;
 }
 
-/* Estilos específicos para los encabezados de tabla de cada tipo de cheque */
 #resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(1),
 #resultadospadre>div:nth-child(2)>table>thead>tr>th:nth-child(1),
 #noaceptados>div>table>thead>tr>th:nth-child(1) {
-    max-width: 10vh;
-    min-width: 8vh;
+    max-width: 6vh;
+    min-width: 4vh;
 }
 
 #resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(2),
 #resultadospadre>div:nth-child(2)>table>thead>tr>th:nth-child(2),
 #noaceptados>div>table>thead>tr>th:nth-child(2) {
-    max-width: 15vh;
-    min-width: 13vh;
+    max-width: 23vh;
+    min-width: 7vh;
 }
 
 #resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(3),
 #resultadospadre>div:nth-child(2)>table>thead>tr>th:nth-child(3),
 #noaceptados>div>table>thead>tr>th:nth-child(3) {
-    max-width: 13vh;
-    min-width: 11vh;
+    max-width: 16vh;
+    min-width: 9vh;
 }
 
 #resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(4),
 #resultadospadre>div:nth-child(2)>table>thead>tr>th:nth-child(4),
 #noaceptados>div>table>thead>tr>th:nth-child(4) {
-    max-width: 6vh;
-    min-width: 5vh;
+    max-width: 16vh;
+    min-width: 9vh;
 }
+
 
 #resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(5),
 #resultadospadre>div:nth-child(2)>table>thead>tr>th:nth-child(5),
 #noaceptados>div>table>thead>tr>th:nth-child(5) {
+    max-width: 6vh;
+    min-width: 4vh;
+}
+
+#resultadospadre>div:nth-child(1)>table>thead>tr>th:nth-child(6),
+#resultadospadre>div:nth-child(2)>table>thead>tr>th:nth-child(6),
+#noaceptados>div>table>thead>tr>th:nth-child(6) {
     max-width: 13vh;
-    min-width: 10vh;
+    min-width: 7vh;
 }
 
 tbody {
@@ -385,6 +485,7 @@ tbody {
 
     td {
         position: relative;
+
         &:hover {
             &:before {
                 content: "";
@@ -416,17 +517,14 @@ footer {
 }
 
 
-
-
-
-@media screen and (max-width: 854px) {
+@media screen and (max-width: 1098px) {
 
     /*!------NAVBAR------*/
-    
+
     .navbar {
         justify-content: center;
     }
-    
+
     .navbar ul li a {
         font-size: 0.8rem;
         padding: 0.8rem 0.5rem;
@@ -437,13 +535,13 @@ footer {
         font-size: 0.8rem;
         padding: 0.8rem 0.5rem;
     }
-    
+
     #navbar>li:nth-child(3)>button {
         font-weight: 500;
         font-size: 0.8rem;
         padding: 0.8rem 0.5rem;
     }
-    
+
 
     /*!------INGRESO DE DATOS------*/
     .ingreso-datos {
@@ -512,22 +610,22 @@ footer {
 
     button.btnsimular {
         font-size: 1.8rem;
-        margin: 10vh 5px 2vh 5px;
-        padding: 3px 8px;
+        margin: 8vh 5px 2vh 5px;
+        padding: 1.5vh;
     }
 
     button.btnlimpiar {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         max-width: 45vh;
         margin: 5vh 5px;
-        padding: 3px 10px;
+        padding: 1.2vh;
     }
 
     #agregar {
         max-width: 25vh;
         font-size: 1.2rem;
         margin: 0px 10px 5px 10px;
-        padding: 0px 3px;
+        padding: 1.5vh;
     }
 
     /*!------RESULTADOS------*/
@@ -576,11 +674,17 @@ footer {
     #subtotal>td:nth-child(1),
     #subtotal>td:nth-child(2),
     #subtotal>td:nth-child(3),
-    #subtotal>td:nth-child(4) {
+    #subtotal>td:nth-child(4),
+    #subtotal>td:nth-child(5) {
         display: none;
     }
 
-    #subtotal>td:nth-child(5) {
+    #subtotal>td:nth-child(6) {
+        border: solid 1px rgba(166, 166, 166, 0.801);
+    }
+
+
+    #subtotal-chddif {
         border: solid 1px rgba(166, 166, 166, 0.801);
     }
 
@@ -590,8 +694,6 @@ footer {
     #subtotal>td:nth-child(8) {
         border: solid 1px rgba(166, 166, 166, 0.801);
     }
-
-
 
     /*!------FOOTER------*/
     footer {

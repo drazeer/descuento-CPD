@@ -1,55 +1,37 @@
+// LOGIN
 document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.getElementById('navbar');
-    const loginButton = document.getElementById('login-button');
     const loggedInUser = localStorage.getItem('loggedInUser');
-
-    // Función para mostrar el nombre del usuario en la barra de navegación
     function mostrarNombreUsuario() {
         const userGreeting = document.createElement('span');
         userGreeting.textContent = `${loggedInUser}`;
-
         const userGreetingLi = document.createElement('li');
         userGreetingLi.appendChild(userGreeting);
-
-        // Heredar clases de los otros elementos li
         userGreetingLi.className = navbar.querySelector('li').className;
-
         navbar.appendChild(userGreetingLi);
     }
-
-    // Función para cerrar sesión
+    // CERRAR SESION
     function cerrarSesion() {
         localStorage.removeItem('loggedInUser');
-        window.location.href = "./index.html"; // Redirigir al usuario al index.html
+        window.location.href = "./index.html";
     }
-
-    // Verificar si el usuario está autenticado
+    // SESION ACTIVA
     if (loggedInUser) {
-        // Mostrar el nombre del usuario en la barra de navegación
         mostrarNombreUsuario();
-
-        // Mostrar botón de cierre de sesión
         const logoutButton = document.createElement('button');
         logoutButton.textContent = 'Cerrar Sesión';
-
         const logoutButtonLi = document.createElement('li');
         logoutButtonLi.appendChild(logoutButton);
-
-        // Heredar clases de los otros elementos li
         logoutButtonLi.className = navbar.querySelector('li').className;
-
         navbar.appendChild(logoutButtonLi);
-
-        // Agregar evento click al botón de cierre de sesión
         logoutButton.addEventListener('click', cerrarSesion);
     } else {
-        // Ocultar secciones restringidas si el usuario no está autenticado
         document.querySelectorAll('.ingreso-datos, .results').forEach(section => {
             section.style.display = 'none';
+            window.location.href = "./index.html";
         });
     }
 });
-
 
 // DATOS POR DEFECTO
 let tasaAnual = 1.68;
@@ -75,13 +57,24 @@ function llenarInputs(cheque) {
     IDinput.setAttribute("id", "identificador" + contarCheque);
     IDinput.setAttribute("value", cheque.id);
     IDinput.setAttribute("required", "");
+    IDinput.setAttribute("readonly", "");
     nuevoCheque.appendChild(IDinput);
+
+    let BancoInput = document.createElement("input");
+    BancoInput.setAttribute("type", "text");
+    BancoInput.setAttribute("id", "bancoid" + contarCheque);
+    BancoInput.setAttribute("value", cheque.banco);
+    BancoInput.setAttribute("required", "");
+    BancoInput.setAttribute("autocomplete", "off");
+    BancoInput.setAttribute("readonly", "");
+    nuevoCheque.appendChild(BancoInput);
 
     let FPagoinput = document.createElement("input");
     FPagoinput.setAttribute("type", "date");
     FPagoinput.setAttribute("id", "fpagoid" + contarCheque);
     FPagoinput.setAttribute("value", cheque.fechaPago);
     FPagoinput.setAttribute("required", "");
+    FPagoinput.setAttribute("readonly", "");
     nuevoCheque.appendChild(FPagoinput);
 
     let Importeinput = document.createElement("input");
@@ -89,6 +82,7 @@ function llenarInputs(cheque) {
     Importeinput.setAttribute("id", "importeid" + contarCheque);
     Importeinput.setAttribute("value", cheque.importe);
     Importeinput.setAttribute("required", "");
+    Importeinput.setAttribute("readonly", "");
     nuevoCheque.appendChild(Importeinput);
 
     let btnEliminar = document.createElement("button");
@@ -108,22 +102,16 @@ function llenarInputsGuardados() {
     cheques.forEach(cheque => llenarInputs(cheque));
 }
 
-// BOTON LIMPIAR
 const btnLimpiar = document.getElementById("limpiar");
 btnLimpiar.addEventListener("click", limpiarResultados);
+
 function limpiarResultados() {
-    // LIMPIO LOS INPUTS DE LA PRIMERA FILA
-    const primerFilaInputs = document.querySelectorAll(".chequesclass:first-child input");
-    primerFilaInputs.forEach(input => input.value = "");
-
-    // RESTABLEZCO TODO A 1 FILA
-    const filasInput = document.querySelectorAll(".chequesclass:not(:first-child)");
+    // RESTABLEZCO TODO A 0 FILAS
+    const filasInput = document.querySelectorAll(".chequesclass");
     filasInput.forEach(fila => fila.remove());
-    contarCheque = 1;
-
+    contarCheque = 0;
     // LIMPIO LOCAL STORAGE
     localStorage.removeItem('cheques');
-
     // LIMPIO HTML
     const resultadosPadre = document.getElementById("resultadospadre");
     resultadosPadre.innerHTML = "";
@@ -132,8 +120,10 @@ function limpiarResultados() {
 }
 
 
+
 // CONTADOR CHEQUES
 let contarCheque = 0;
+let numeroCheques;
 
 // BOTON AGREGAR CHEQUE
 function agregarNuevoCheque() {
@@ -141,26 +131,75 @@ function agregarNuevoCheque() {
     const nuevoCheque = document.createElement("div");
     nuevoCheque.setAttribute("class", "chequesclass");
 
-    // Obtener el número actual de cheques
-    const numeroCheques = contenedorPadre.querySelectorAll(".chequesclass").length;
+    numeroCheques = contenedorPadre.querySelectorAll(".chequesclass").length;
 
+    const IDContainer = document.createElement("div");
+    IDContainer.setAttribute("class", "input-container");
     const IDinput = document.createElement("input");
+    IDinput.setAttribute("class", "id-input");
     IDinput.setAttribute("type", "number");
     IDinput.setAttribute("id", "identificador" + numeroCheques);
     IDinput.setAttribute("required", "");
-    nuevoCheque.appendChild(IDinput);
+    IDinput.setAttribute("placeholder", "Identificador");
+    IDContainer.appendChild(IDinput);
+    nuevoCheque.appendChild(IDContainer);
 
+    const BusquedaBancoContainer = document.createElement("div");
+    BusquedaBancoContainer.setAttribute("class", "busqueda-container");
+    const BusquedaBancoInputContainer = document.createElement("div");
+    BusquedaBancoInputContainer.setAttribute("class", "input-container");
+    const BusquedaBanco = document.createElement("input");
+    BusquedaBanco.setAttribute("class", "busqueda-banco");
+    BusquedaBanco.setAttribute("type", "text");
+    BusquedaBanco.setAttribute("id", "bancoid" + numeroCheques);
+    BusquedaBanco.setAttribute("placeholder", "Buscar banco");
+    BusquedaBanco.setAttribute("autocomplete", "off");
+    BusquedaBancoInputContainer.appendChild(BusquedaBanco);
+    BusquedaBancoContainer.appendChild(BusquedaBancoInputContainer);
+
+    const ListaResultadosContainer = document.createElement("div");
+    ListaResultadosContainer.setAttribute("class", "input-container");
+
+    const ListaResultados = document.createElement("ul");
+    ListaResultados.setAttribute("id", "listaResultados" + numeroCheques);
+    ListaResultados.setAttribute("class", "lista-resultados");
+    ListaResultadosContainer.appendChild(ListaResultados);
+    BusquedaBancoContainer.appendChild(ListaResultadosContainer);
+
+    nuevoCheque.appendChild(BusquedaBancoContainer);
+
+    // lLLAMO AL JSON
+    fetch('bancosdb.json')
+        .then(response => response.json())
+        .then(data => {
+            const bancos = data;
+            BusquedaBanco.addEventListener("input", function () {
+                const busqueda = BusquedaBanco.value;
+                actualizarListaBancos(busqueda, ListaResultados, bancos, BusquedaBanco);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar los bancos:', error);
+        });
+
+    const FPagoContainer = document.createElement("div");
+    FPagoContainer.setAttribute("class", "input-container");
     const FPagoinput = document.createElement("input");
     FPagoinput.setAttribute("type", "date");
     FPagoinput.setAttribute("id", "fpagoid" + numeroCheques);
     FPagoinput.setAttribute("required", "");
-    nuevoCheque.appendChild(FPagoinput);
+    FPagoContainer.appendChild(FPagoinput);
+    nuevoCheque.appendChild(FPagoContainer);
 
+    const ImporteContainer = document.createElement("div");
+    ImporteContainer.setAttribute("class", "input-container");
     const Importeinput = document.createElement("input");
     Importeinput.setAttribute("type", "number");
     Importeinput.setAttribute("id", "importeid" + numeroCheques);
     Importeinput.setAttribute("required", "");
-    nuevoCheque.appendChild(Importeinput);
+    Importeinput.setAttribute("placeholder", "Importe");
+    ImporteContainer.appendChild(Importeinput);
+    nuevoCheque.appendChild(ImporteContainer);
 
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
@@ -170,55 +209,47 @@ function agregarNuevoCheque() {
     };
     nuevoCheque.appendChild(btnEliminar);
 
-    // Agregar evento de cambio al input de importe
+    // CONTROL DE DATOS INGRESADOS Y SWEETALERTS
     Importeinput.addEventListener("input", function () {
         const importeValue = parseFloat(Importeinput.value);
         if (importeValue <= 0) {
-            // Mostrar alerta utilizando SweetAlert2
             Swal.fire({
                 icon: 'error',
+                showConfirmButton: false,
+                timer: 1000,
                 title: 'Error',
                 text: 'El importe debe ser mayor que 0',
             }).then(() => {
-                Importeinput.value = ""; // Limpiar el valor del input
-                Importeinput.focus(); // Enfocar el input para que el usuario corrija el valor
+                Importeinput.value = "";
+                Importeinput.focus();
             });
         }
     });
 
-    // Agregar evento de cambio al input de fecha de pago
-    Importeinput.addEventListener("input", function () {
+    FPagoinput.addEventListener("blur", function () {
         const fechaPago = new Date(FPagoinput.value);
         const fechaActual = new Date();
         const diferenciaDias = Math.ceil((fechaPago - fechaActual) / (1000 * 60 * 60 * 24));
-
-        // Verificar si la fecha de pago está vencida (diferencia negativa)
+        // CHEQUE VENCIDO
         if (diferenciaDias < -30) {
-            // Mostrar alerta utilizando SweetAlert2
             Swal.fire({
                 icon: 'warning',
                 title: 'Atención',
                 text: 'El cheque está vencido.',
             }).then(() => {
-                // Restaurar el valor por defecto del input
-                Importeinput.value = ""; // Limpiar el valor del input
-                FPagoinput.value = ""; // Limpiar el valor del input
-                FPagoinput.focus(); // Enfocar el input para que el usuario corrija el valor
+                FPagoinput.value = "";
+                FPagoinput.focus();
             });
         }
-
-        // Verificar si la fecha de pago supera los 360 días
+        // CHEQUE + 360 DIAS
         else if (diferenciaDias > 360) {
-            // Mostrar alerta utilizando SweetAlert2
             Swal.fire({
                 icon: 'warning',
                 title: 'Atención',
                 text: 'El cheque supera los 360 días.',
             }).then(() => {
-                // Restaurar el valor por defecto del input
-                Importeinput.value = ""; // Limpiar el valor del input
-                FPagoinput.value = ""; // Limpiar el valor del input
-                FPagoinput.focus(); // Enfocar el input para que el usuario corrija el valor
+                FPagoinput.value = "";
+                FPagoinput.focus();
             });
         }
     });
@@ -227,53 +258,88 @@ function agregarNuevoCheque() {
 }
 
 
-// Agregar evento click al botón agregar
+// FILTRO Y BUSQUEDA DE BANCOS
+let typingTimer;
+const doneTypingInterval = 500;
+
+function actualizarListaBancos(busqueda, listaResultados, bancos, BusquedaBanco) {
+    listaResultados.innerHTML = "";
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(() => {
+        const resultados = bancos.filter(banco => {
+            return banco.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+                banco.alias.toLowerCase().includes(busqueda.toLowerCase());
+        });
+        if (resultados.length === 0) {
+            const listItem = document.createElement("li");
+            listItem.textContent = "Otra Entidad";
+            listItem.setAttribute("data-value", "Otra Entidad");
+            listItem.addEventListener("click", function () {
+                const selectBanco = document.getElementById("identificador" + numeroCheques);
+                BusquedaBanco.value = this.getAttribute("data-value");
+                listaResultados.innerHTML = "";
+            });
+            listaResultados.appendChild(listItem);
+            Swal.fire({
+                icon: 'info',
+                showConfirmButton: false,
+                timer: 1000,
+                title: 'Seleccione un Banco de la Lista',
+                text: 'Si no lo encuentra, seleccione "Otra Entidad".',
+            });
+        } else {
+            resultados.forEach(banco => {
+                const listItem = document.createElement("li");
+                listItem.textContent = banco.alias;
+                listItem.setAttribute("data-value", banco.alias);
+                listItem.addEventListener("click", function () {
+                    const selectBanco = document.getElementById("identificador" + numeroCheques);
+                    BusquedaBanco.value = this.getAttribute("data-value");
+                    listaResultados.innerHTML = "";
+                });
+                listaResultados.appendChild(listItem);
+            });
+        }
+    }, doneTypingInterval);
+}
+
+
+// BOTON AGREGAR
 const btnagregar = document.getElementById("agregar")
 btnagregar.addEventListener("click", agregarNuevoCheque);
 
-// Agregar evento change a todos los inputs de importe al cargar la página
-document.addEventListener("DOMContentLoaded", function () {
-    const importeInputs = document.querySelectorAll('input[type="number"]');
-    importeInputs.forEach(input => {
-        if (input.id.includes("importeid")) {
-            input.addEventListener("input", function () {
-                const importeValue = parseFloat(input.value);
-                if (importeValue <= 0) {
-                    // Mostrar alerta utilizando SweetAlert2
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'El importe debe ser mayor que 0',
-                    }).then(() => {
-                        input.value = ""; // Limpiar el valor del input
-                        input.focus(); // Enfocar el input para que el usuario corrija el valor
-                    });
-                }
-            });
-        }
-    });
-
-
-});
-
-
 function eliminarElemento(el) {
     el.remove();
-    // Obtener el ID del cheque a eliminar
     const idEliminar = el.querySelector('input[type="number"]').value;
-    // Filtrar el arreglo de cheques para eliminar el cheque con el ID correspondiente
     cheques = cheques.filter(cheque => cheque.id !== idEliminar);
-    // Guardar los cheques actualizados en el localStorage
     localStorage.setItem('cheques', JSON.stringify(cheques));
 }
-
 document.addEventListener("DOMContentLoaded", function () {
     llenarInputsGuardados();
 });
 
+
+
+
 // BOTON CALCULAR
 const btnCalc = document.getElementById("calcular");
 btnCalc.addEventListener("click", () => {
+    // CONTROL DE CAMPOS VACIOS Y SWEETALERTS
+    const inputsVacios = document.querySelectorAll('.chequesclass input:invalid');
+    if (inputsVacios.length > 0) {
+        const primerInputVacio = inputsVacios[0];
+        Swal.fire({
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1000,
+            title: 'Oops...',
+            text: 'Por favor complete todos los campos antes de simular.',
+        });
+        primerInputVacio.focus();
+        return;
+    }
+
+
     // LIMPIO EL HTML DE RESULTADOS PARA CADA NUEVA SIMULACION
     const resultadosPadre = document.getElementById("resultadospadre");
     resultadosPadre.innerHTML = "";
@@ -282,39 +348,62 @@ btnCalc.addEventListener("click", () => {
     noAceptadosPadre.innerHTML = "";
     const cheques = [];
     const classCheques = document.querySelectorAll(".chequesclass");
-    
+
     classCheques.forEach((chequeElement, index) => {
         const inputID = chequeElement.querySelector(`input[id^="identificador"]`);
         const inputFechaPago = chequeElement.querySelector(`input[id^="fpagoid"]`);
         const inputImporte = chequeElement.querySelector(`input[id^="importeid"]`);
-    
+        const inputBanco = chequeElement.querySelector(`input[id^="bancoid"]`);
+
         if (!inputID.value || !inputFechaPago.value || !inputImporte.value) {
-            return; // Saltar este cheque si algún campo está vacío
+            return;
         }
-    
+
+        function calcularFechaParseada(fecha) {
+            return Math.round(new Date(fecha) / (1000 * 60 * 60 * 24));
+        }
+        function calcularComChAlDia(importe) {
+            return ((importe) - (((1 - comChequePorEfectivoDirecto) * (importe)).toFixed(2))).toFixed(2);
+        }
+        function calcularNetoChAlDia(importe) {
+            return ((1 - comChequePorEfectivoDirecto) * (importe)).toFixed(2);
+        }
+        function calcularNetoChequeIntereses(importe, fechaPago) {
+            return ((importe) * (1 - (tasaAnual * (((Math.round((new Date(fechaPago)) / (1000 * 60 * 60 * 24))) + 3) - fechaOp2)) / 365)).toFixed(2);
+        }
+        function calcularInteresPuro(importe, fechaPago) {
+            return ((importe) - (((importe) * (1 - (tasaAnual * (((Math.round((new Date(fechaPago)) / (1000 * 60 * 60 * 24))) + 3) - fechaOp2)) / 365)).toFixed(2))).toFixed(2);
+        }
+        function calcularComChDiferido(importe) {
+            return (comChequePorEfectivoDiferido * (importe)).toFixed(2);
+        }
+        function calcularNetoChequeDif(importe, fechaPago) {
+            return ((((importe) * (1 - (tasaAnual * (((Math.round((new Date(fechaPago)) / (1000 * 60 * 60 * 24))) + 3) - fechaOp2)) / 365)).toFixed(2)) - ((comChequePorEfectivoDiferido * (importe)).toFixed(2))).toFixed(2);
+        }
+
+        // OBJETO CHEQUE
         const chequeCargado = {
             id: inputID.value,
             fechaHoy: fechaOp,
             fechaHoyParsed: fechaOp2,
             fechaPago: inputFechaPago.value,
             fechaPagoDateFormat: new Date(inputFechaPago.value),
-            fechaPagoParsed: Math.round(new Date(inputFechaPago.value) / (1000 * 60 * 60 * 24)),
-            plazo: Math.round(new Date(inputFechaPago.value) / (1000 * 60 * 60 * 24)) + 3 - fechaOp2,
+            fechaPagoParsed: calcularFechaParseada(inputFechaPago.value),
+            plazo: calcularFechaParseada(inputFechaPago.value) + 3 - fechaOp2,
             importe: inputImporte.value,
-            comChAlDia: ((inputImporte.value) - (((1 - comChequePorEfectivoDirecto) * (inputImporte.value)).toFixed(2))).toFixed(2),
-            netoChAlDia: ((1 - comChequePorEfectivoDirecto) * (inputImporte.value)).toFixed(2),
-            netoChequeIntereses: ((inputImporte.value) * (1 - (tasaAnual * (((Math.round((new Date(inputFechaPago.value)) / (1000 * 60 * 60 * 24))) + 3) - fechaOp2)) / 365)).toFixed(2),
-            interesPuro: ((inputImporte.value) - (((inputImporte.value) * (1 - (tasaAnual * (((Math.round((new Date(inputFechaPago.value)) / (1000 * 60 * 60 * 24))) + 3) - fechaOp2)) / 365)).toFixed(2))).toFixed(2),
-            comChDiferido: (comChequePorEfectivoDiferido * (inputImporte.value)).toFixed(2),
-            netoChequeDif: ((((inputImporte.value) * (1 - (tasaAnual * (((Math.round((new Date(inputFechaPago.value)) / (1000 * 60 * 60 * 24))) + 3) - fechaOp2)) / 365)).toFixed(2)) - ((comChequePorEfectivoDiferido * (inputImporte.value)).toFixed(2))).toFixed(2),
+            banco: inputBanco.value,
+            comChAlDia: calcularComChAlDia(inputImporte.value),
+            netoChAlDia: calcularNetoChAlDia(inputImporte.value),
+            netoChequeIntereses: calcularNetoChequeIntereses(inputImporte.value, inputFechaPago.value),
+            interesPuro: calcularInteresPuro(inputImporte.value, inputFechaPago.value),
+            comChDiferido: calcularComChDiferido(inputImporte.value),
+            netoChequeDif: calcularNetoChequeDif(inputImporte.value, inputFechaPago.value),
         };
         cheques.push(chequeCargado);
     });
-    
 
     // GUARDO LOS CHQUES EN EL LOCALSTORAGE
     localStorage.setItem('cheques', JSON.stringify(cheques));
-
     // SEPARO CHEQUES DIFERIDOS
     const chequesDiferidos = cheques.filter(
         (chequeDiferido) =>
@@ -339,11 +428,12 @@ btnCalc.addEventListener("click", () => {
     const aceptado = document.getElementById("resultadospadre");
     const noAceptado = document.getElementById("noaceptados");
 
-    // Textos para encabezados
+    // ENCABEZADOS DE TABLA
     const encabezadosTextos = {
         id: "ID",
         fechaHoy: "Fecha Operación",
         fechaPago: "Fecha de Pago",
+        banco: "Banco",
         plazo: "Plazo",
         interesPuro: "Intereses",
         importe: "Importe",
@@ -353,187 +443,163 @@ btnCalc.addEventListener("click", () => {
         comChAlDia: "Comision",
     };
 
+    // GENERO TABLA
+    function generarTablaEnDiv(cheques, contenedor) {
+        if (cheques.length === 0) {
+            return;
+        }
 
+        const tablaContainer = document.createElement('div');
+        tablaContainer.classList.add('containertablas');
 
+        const tituloTabla = document.createElement('h3');
+        tituloTabla.textContent = determinarTituloTabla(cheques);
+        tituloTabla.setAttribute("class", "results-h3");
+        tablaContainer.appendChild(tituloTabla);
 
+        const tabla = document.createElement('table');
+        tabla.setAttribute('border', '1');
+        tabla.classList.add('responsive-table');
 
+        const encabezados = Object.keys(cheques[0]).filter(encabezado =>
+            encabezado === 'id' ||
+            encabezado === 'banco' ||
+            encabezado === 'fechaHoy' ||
+            encabezado === 'fechaPago' ||
+            encabezado === 'plazo' ||
+            encabezado === 'importe' ||
+            (cheques === chequesDiferidos && (encabezado === 'interesPuro' || encabezado === 'comChDiferido' || encabezado === 'netoChequeDif')) ||
+            (cheques === chequesAlDia && (encabezado === 'netoChAlDia' || encabezado === 'comChAlDia')) ||
+            (cheques === chequesNegativos && (encabezado === 'saldo' || encabezado === 'interes'))
+        );
 
+        const thead = document.createElement('thead');
+        const encabezadosRow = document.createElement('tr');
 
+        const thID = document.createElement('th');
+        thID.textContent = obtenerTextoEncabezado('id');
+        encabezadosRow.appendChild(thID);
 
+        const thBanco = document.createElement('th');
+        thBanco.textContent = obtenerTextoEncabezado('banco');
+        encabezadosRow.appendChild(thBanco);
 
-
-
-
-
-
-// Función para generar una tabla con los resultados y envolverla en un contenedor
-function generarTablaEnDiv(cheques, contenedor) {
-    if (cheques.length === 0) {
-        return;
-    }
-
-    // Crear el contenedor para la tabla
-    const tablaContainer = document.createElement('div');
-    tablaContainer.classList.add('containertablas');
-
-    // Crear la tabla
-    const tabla = document.createElement('table');
-    tabla.setAttribute('border', '1');
-    tabla.classList.add('responsive-table');
-
-    // Crear encabezados de tabla y envolverlos en thead
-    const encabezados = Object.keys(cheques[0]).filter(encabezado =>
-        encabezado === 'id' ||
-        encabezado === 'fechaHoy' ||
-        encabezado === 'fechaPago' ||
-        encabezado === 'plazo' ||
-        encabezado === 'importe' ||
-        (cheques === chequesDiferidos && (encabezado === 'interesPuro' || encabezado === 'comChDiferido' || encabezado === 'netoChequeDif')) ||
-        (cheques === chequesAlDia && (encabezado === 'netoChAlDia' || encabezado === 'comChAlDia')) ||
-        (cheques === chequesNegativos && (encabezado === 'saldo' || encabezado === 'interes' || encabezado === 'cuotas'))
-    );
-    const thead = document.createElement('thead');
-    const encabezadosRow = document.createElement('tr');
-    encabezados.forEach(encabezado => {
-        const th = document.createElement('th');
-        th.textContent = encabezadosTextos[encabezado]; // Utilizar el objeto encabezadosTextos para obtener el texto modificado del encabezado
-        encabezadosRow.appendChild(th);
-    });
-    thead.appendChild(encabezadosRow);
-    tabla.appendChild(thead);
-
-    // Crear tbody para el resto de las filas
-    const tbody = document.createElement('tbody');
-
-    // Llenar tabla con los datos de los cheques
-    let subtotalImporte = 0;
-    let subtotalComision = 0;
-    let subtotalIntereses = 0;
-    let subtotalNeto = 0;
-
-    // Llenar tabla con los datos de los cheques
-    cheques.forEach(cheque => {
-        const fila = document.createElement('tr');
         encabezados.forEach(encabezado => {
-            const celda = document.createElement('td');
-
-            // Manejo especial para los encabezados ID, Fecha Operación y Fecha de Pago
-            if (cheques === chequesDiferidos || cheques === chequesAlDia || cheques === chequesNegativos) {
-                if (encabezado === 'id') {
-                    celda.setAttribute("data-label", "ID");
-                } else if (encabezado === 'fechaHoy') {
-                    celda.setAttribute("data-label", "Fecha Operación");
-                } else if (encabezado === 'fechaPago') {
-                    celda.setAttribute("data-label", "Fecha de Pago");
-                } else {
-                    // Establecer el atributo data-label con el nombre del encabezado
-                    celda.setAttribute("data-label", encabezadosTextos[encabezado]);
-                }
-            } else {
-                // Establecer el atributo data-label con el nombre del encabezado
-                celda.setAttribute("data-label", encabezadosTextos[encabezado]);
+            if (encabezado !== 'id' && encabezado !== 'banco') {
+                const th = document.createElement('th');
+                th.textContent = obtenerTextoEncabezado(encabezado);
+                encabezadosRow.appendChild(th);
             }
-
-            if (encabezado === 'fechaHoy' || encabezado === 'fechaPago') {
-                // Convertir la fecha al formato deseado ('DD-MM-AAAA')
-                const fecha = new Date(cheque[encabezado]);
-                const dia = String(fecha.getDate()).padStart(2, '0');
-                const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-                const anio = fecha.getFullYear();
-                const fechaFormateada = dia + '-' + mes + '-' + anio;
-                celda.textContent = fechaFormateada;
-            } else {
-                const valor = parseFloat(cheque[encabezado]);
-                if (['interesPuro', 'importe', 'comChDiferido', 'netoChequeDif', 'netoChAlDia', 'comChAlDia'].includes(encabezado)) {
-                    // Formatear como moneda en ARS
-                    celda.textContent = valor.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
-                } else {
-                    celda.textContent = Math.floor(valor); // Mostrar como número entero sin decimales
-                }
-                if (encabezado === 'importe') {
-                    subtotalImporte += valor;
-                } else if (encabezado === 'interesPuro') {
-                    subtotalIntereses += valor;
-                } else if (encabezado === 'comChDiferido' || encabezado === 'comChAlDia') {
-                    subtotalComision += valor;
-                } else if (encabezado === 'netoChequeDif' || encabezado === 'netoChAlDia') {
-                    subtotalNeto += valor;
-                }
-            }
-            fila.appendChild(celda);
         });
-        tbody.appendChild(fila);
-    });
+        thead.appendChild(encabezadosRow);
+        tabla.appendChild(thead);
 
-    // Resto del código para formatear y llenar las celdas de la tabla...
+        function obtenerTextoEncabezado(encabezado) {
+            return encabezadosTextos[encabezado] || encabezado;
+        }
 
-    // Agregar tbody a la tabla
-    tabla.appendChild(tbody);
+        const tbody = document.createElement('tbody');
+        let subtotalImporte = 0;
+        let subtotalComision = 0;
+        let subtotalIntereses = 0;
+        let subtotalNeto = 0;
 
-    // Agregar tabla al contenedor
-    tablaContainer.appendChild(tabla);
+        cheques.forEach(cheque => {
+            const fila = document.createElement('tr');
 
-    // Agregar contenedor al contenedor especificado
-    contenedor.appendChild(tablaContainer);
+            const celdaID = document.createElement('td');
+            celdaID.textContent = cheque['id'];
+            celdaID.setAttribute("data-label", "ID");
+            fila.appendChild(celdaID);
 
+            const celdaBanco = document.createElement('td');
+            celdaBanco.textContent = cheque['banco'];
+            celdaBanco.setAttribute("data-label", "Banco");
+            fila.appendChild(celdaBanco);
 
-    
-        // Agregar subtotal solo a las tablas de chequesDiferidos y chequesAlDia
+            encabezados.forEach(encabezado => {
+                if (encabezado !== 'id' && encabezado !== 'banco') {
+                    const celda = document.createElement('td');
+
+                    if (encabezado === 'fechaHoy' || encabezado === 'fechaPago') {
+                        // Convertir la fecha al formato deseado ('DD-MM-AAAA')
+                        const fecha = new Date(cheque[encabezado]);
+                        const dia = String(fecha.getDate()).padStart(2, '0');
+                        const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+                        const anio = fecha.getFullYear();
+                        const fechaFormateada = dia + '-' + mes + '-' + anio;
+                        celda.textContent = fechaFormateada;
+                    } else {
+                        const valor = parseFloat(cheque[encabezado]);
+                        if (['interesPuro', 'importe', 'comChDiferido', 'netoChequeDif', 'netoChAlDia', 'comChAlDia'].includes(encabezado)) {
+                            // Formatear como moneda en ARS
+                            celda.textContent = valor.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
+                        } else {
+                            celda.textContent = Math.floor(valor); // Mostrar como número entero sin decimales
+                        }
+                        if (encabezado === 'importe') {
+                            subtotalImporte += valor;
+                        } else if (encabezado === 'interesPuro') {
+                            subtotalIntereses += valor;
+                        } else if (encabezado === 'comChDiferido' || encabezado === 'comChAlDia') {
+                            subtotalComision += valor;
+                        } else if (encabezado === 'netoChequeDif' || encabezado === 'netoChAlDia') {
+                            subtotalNeto += valor;
+                        }
+                    }
+
+                    celda.setAttribute("data-label", encabezadosTextos[encabezado]);
+                    fila.appendChild(celda);
+                }
+            });
+
+            tbody.appendChild(fila);
+        });
+
+        tabla.appendChild(tbody);
+        tablaContainer.appendChild(tabla);
+        contenedor.appendChild(tablaContainer);
+
+        // SUBTOTALES
         if (cheques === chequesDiferidos) {
             const filaSubtotal = document.createElement('tr');
             filaSubtotal.setAttribute("id", "subtotal");
 
-            const celdaVacia1 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia1);
+            const celdasVacias = Array.from({ length: 5 }, () => document.createElement('td'));
+            celdasVacias.forEach(celda => filaSubtotal.appendChild(celda));
 
-            const celdaVacia2 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia2);
-
-            const celdaVacia3 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia3);
-
-            const celdaVacia4 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia4);
-
-            const celdaImporteSubtotal = document.createElement('td');
-            celdaImporteSubtotal.setAttribute("data-label", "Importe Total");
-            celdaImporteSubtotal.textContent = subtotalImporte.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
+            const celdaImporteSubtotal = crearCeldaSubtotal("Importe Total", subtotalImporte);
             filaSubtotal.appendChild(celdaImporteSubtotal);
 
-            const celdaInteresSubtotal = document.createElement('td');
-            celdaInteresSubtotal.setAttribute("data-label", "Total Intereses");
-            celdaInteresSubtotal.textContent = subtotalIntereses.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
+            const celdaInteresSubtotal = crearCeldaSubtotal("Total Intereses", subtotalIntereses);
             filaSubtotal.appendChild(celdaInteresSubtotal);
 
-            const celdaComisionSubtotal = document.createElement('td');
-            celdaComisionSubtotal.setAttribute("data-label", "Total Comisiones");
-            celdaComisionSubtotal.textContent = subtotalComision.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
+            const celdaComisionSubtotal = crearCeldaSubtotal("Total Comisiones", subtotalComision);
             filaSubtotal.appendChild(celdaComisionSubtotal);
 
-            const celdaNetoSubtotal = document.createElement('td');
-            celdaNetoSubtotal.setAttribute("data-label", "Neto Opereación");
-            celdaNetoSubtotal.textContent = subtotalNeto.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
+            const celdaNetoSubtotal = crearCeldaSubtotal("Neto Operación", subtotalNeto, "subtotal-chddif");
             filaSubtotal.appendChild(celdaNetoSubtotal);
 
-
             tbody.appendChild(filaSubtotal);
+        }
+
+        function crearCeldaSubtotal(label, valor, id = "") {
+            const celda = document.createElement('td');
+            celda.setAttribute("data-label", label);
+            celda.textContent = valor.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
+            if (id) {
+                celda.setAttribute("id", id);
+            }
+            return celda;
         }
 
         if (cheques === chequesAlDia) {
             const filaSubtotal = document.createElement('tr');
             filaSubtotal.setAttribute("id", "subtotal");
 
-            const celdaVacia1 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia1);
-
-            const celdaVacia2 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia2);
-
-            const celdaVacia3 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia3);
-
-            const celdaVacia4 = document.createElement('td');
-            filaSubtotal.appendChild(celdaVacia4);
+            for (let i = 0; i < 5; i++) {
+                filaSubtotal.appendChild(document.createElement('td'));
+            }
 
             const celdaImporteSubtotal = document.createElement('td');
             celdaImporteSubtotal.setAttribute("data-label", "Importe Total");
@@ -547,28 +613,51 @@ function generarTablaEnDiv(cheques, contenedor) {
 
             const celdaNetoSubtotal = document.createElement('td');
             celdaNetoSubtotal.setAttribute("data-label", "Neto Opereación");
+            celdaNetoSubtotal.setAttribute("id", "subtotal-chdia");
             celdaNetoSubtotal.textContent = subtotalNeto.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
             filaSubtotal.appendChild(celdaNetoSubtotal);
 
             tbody.appendChild(filaSubtotal);
         }
 
-        // Agregar tbody a la tabla
         tabla.appendChild(tbody);
-
-        // Agregar la tabla al contenedor
         tablaContainer.appendChild(tabla);
-
-        // Agregar el contenedor al contenedor padre
         contenedor.appendChild(tablaContainer);
     }
 
-    // Generar tabla para cheques diferidos
+    function determinarTituloTabla(cheques) {
+        if (cheques === chequesDiferidos) {
+            return "Cheques Diferidos";
+        } else if (cheques === chequesAlDia) {
+            return "Cheques al Día";
+        } else if (cheques === chequesNegativos) {
+            return "Cheques No Aceptados";
+        }
+    }
+
     generarTablaEnDiv(chequesDiferidos, aceptado);
-
-    // Generar tabla para cheques al día
     generarTablaEnDiv(chequesAlDia, aceptado);
-
-    // Generar tabla para chequesNegativos
     generarTablaEnDiv(chequesNegativos, noAceptado);
+
+
+
+    // TOTALES GENERALES
+    const totalChequesDifTd = document.querySelector('#subtotal-chddif');
+    const totalChequesDifText = totalChequesDifTd ? totalChequesDifTd.textContent.trim() : '0';
+    const cleanNumberStringDif = totalChequesDifText.replace(/[^\d.,]+/g, '');
+    const cleanNumberDif = parseFloat(cleanNumberStringDif.replace(/\./g, '').replace(',', '.'));
+    const totalChequesDif = isNaN(cleanNumberDif) ? 0 : cleanNumberDif;
+
+    const totalChequesAlDiaTd = document.querySelector('#subtotal-chdia');
+    const totalChequesAlDiaText = totalChequesAlDiaTd ? totalChequesAlDiaTd.textContent.trim() : '0';
+    const cleanNumberStringAlDia = totalChequesAlDiaText.replace(/[^\d.,]+/g, '');
+    const cleanNumberAlDia = parseFloat(cleanNumberStringAlDia.replace(/\./g, '').replace(',', '.'));
+    const totalChequesAlDia = isNaN(cleanNumberAlDia) ? 0 : cleanNumberAlDia;
+
+    //TOTAL FINAL
+    const totalOperacion = totalChequesDif + totalChequesAlDia;
+    const contenedorResultado = document.getElementById("resultadospadre");
+    const TotalFinal = document.createElement("h4");
+    TotalFinal.textContent = "Total de la Operacion: " + totalOperacion.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
+    contenedorResultado.appendChild(TotalFinal);
 });

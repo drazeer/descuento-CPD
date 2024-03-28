@@ -1,0 +1,392 @@
+[
+    {
+        "id": 70,
+        "alias": "Otra Entidad",
+        "nombre": "OTROS"
+    },
+    {
+        "id": 7,
+        "alias": "Galicia",
+        "nombre": "BANCO DE GALICIA Y BUENOS AIRES S.A.U."
+    },
+    {
+        "id": 11,
+        "alias": "Nacion",
+        "nombre": "BANCO DE LA NACION ARGENTINA"
+    },
+    {
+        "id": 14,
+        "alias": "Provincia BSAS",
+        "nombre": "BANCO DE LA PROVINCIA DE BUENOS AIRES"
+    },
+    {
+        "id": 15,
+        "alias": "ICBC",
+        "nombre": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA"
+    },
+    {
+        "id": 16,
+        "alias": "Citibank",
+        "nombre": "CITIBANK N.A."
+    },
+    {
+        "id": 17,
+        "alias": "BBVA",
+        "nombre": "BANCO BBVA ARGENTINA S.A."
+    },
+    {
+        "id": 20,
+        "alias": "Cordoba",
+        "nombre": "BANCO DE LA PROVINCIA DE CORDOBA S.A."
+    },
+    {
+        "id": 27,
+        "alias": "Supervielle",
+        "nombre": "BANCO SUPERVIELLE S.A."
+    },
+    {
+        "id": 29,
+        "alias": "Ciudad BSAS",
+        "nombre": "BANCO DE LA CIUDAD DE BUENOS AIRES"
+    },
+    {
+        "id": 34,
+        "alias": "Patagonia",
+        "nombre": "BANCO PATAGONIA S.A."
+    },
+    {
+        "id": 44,
+        "alias": "Hipotecario",
+        "nombre": "BANCO HIPOTECARIO S.A."
+    },
+    {
+        "id": 45,
+        "alias": "San Juan",
+        "nombre": "BANCO DE SAN JUAN S.A."
+    },
+    {
+        "id": 65,
+        "alias": "Municipal de ROS",
+        "nombre": "BANCO MUNICIPAL DE ROSARIO"
+    },
+    {
+        "id": 72,
+        "alias": "Santander",
+        "nombre": "BANCO SANTANDER ARGENTINA S.A."
+    },
+    {
+        "id": 83,
+        "alias": "Chubut",
+        "nombre": "BANCO DEL CHUBUT S.A."
+    },
+    {
+        "id": 86,
+        "alias": "Santa Cruz",
+        "nombre": "BANCO DE SANTA CRUZ S.A."
+    },
+    {
+        "id": 93,
+        "alias": "La Pampa",
+        "nombre": "BANCO DE LA PAMPA SOCIEDAD DE ECONOMÍA M"
+    },
+    {
+        "id": 94,
+        "alias": "Corrientes",
+        "nombre": "BANCO DE CORRIENTES S.A."
+    },
+    {
+        "id": 97,
+        "alias": "Neuquen",
+        "nombre": "BANCO PROVINCIA DEL NEUQUÉN SOCIEDAD ANÓ"
+    },
+    {
+        "id": 131,
+        "alias": "Bank Of China",
+        "nombre": "BANK OF CHINA LIMITED SUCURSAL BUENOS AI"
+    },
+    {
+        "id": 143,
+        "alias": "Brubank",
+        "nombre": "BRUBANK S.A.U."
+    },
+    {
+        "id": 147,
+        "alias": "Bibank",
+        "nombre": "BIBANK S.A."
+    },
+    {
+        "id": 150,
+        "alias": "HSBC",
+        "nombre": "HSBC BANK ARGENTINA S.A."
+    },
+    {
+        "id": 158,
+        "alias": "Open Bank",
+        "nombre": "OPEN BANK ARGENTINA S.A."
+    },
+    {
+        "id": 165,
+        "alias": "JPMorgan Chase",
+        "nombre": "JPMORGAN CHASE BANK, NATIONAL ASSOCIATIO"
+    },
+    {
+        "id": 191,
+        "alias": "CREDICOOP",
+        "nombre": "BANCO CREDICOOP COOPERATIVO LIMITADO"
+    },
+    {
+        "id": 198,
+        "alias": "Valores",
+        "nombre": "BANCO DE VALORES S.A."
+    },
+    {
+        "id": 247,
+        "alias": "Roela",
+        "nombre": "BANCO ROELA S.A."
+    },
+    {
+        "id": 254,
+        "alias": "Mariva",
+        "nombre": "BANCO MARIVA S.A."
+    },
+    {
+        "id": 259,
+        "alias": "Itau",
+        "nombre": "BANCO ITAU ARGENTINA S.A."
+    },
+    {
+        "id": 266,
+        "alias": "BNP Paribas",
+        "nombre": "BNP PARIBAS"
+    },
+    {
+        "id": 268,
+        "alias": "Tierra del Fuego",
+        "nombre": "BANCO PROVINCIA DE TIERRA DEL FUEGO"
+    },
+    {
+        "id": 269,
+        "alias": "Uruguay",
+        "nombre": "BANCO DE LA REPUBLICA ORIENTAL DEL URUGU"
+    },
+    {
+        "id": 277,
+        "alias": "Saenz",
+        "nombre": "BANCO SAENZ S.A."
+    },
+    {
+        "id": 281,
+        "alias": "Meridian",
+        "nombre": "BANCO MERIDIAN S.A."
+    },
+    {
+        "id": 285,
+        "alias": "Macro",
+        "nombre": "BANCO MACRO S.A."
+    },
+    {
+        "id": 299,
+        "alias": "Comafi",
+        "nombre": "BANCO COMAFI SOCIEDAD ANONIMA"
+    },
+    {
+        "id": 300,
+        "alias": "Inversion y ComEx",
+        "nombre": "BANCO DE INVERSION Y COMERCIO EXTERIOR S"
+    },
+    {
+        "id": 301,
+        "alias": "Piano",
+        "nombre": "BANCO PIANO S.A."
+    },
+    {
+        "id": 305,
+        "alias": "Julio",
+        "nombre": "BANCO JULIO SOCIEDAD ANONIMA"
+    },
+    {
+        "id": 309,
+        "alias": "Rioja",
+        "nombre": "BANCO RIOJA SOCIEDAD ANONIMA UNIPERSONAL"
+    },
+    {
+        "id": 310,
+        "alias": "Del Sol",
+        "nombre": "BANCO DEL SOL S.A."
+    },
+    {
+        "id": 311,
+        "alias": "Chaco",
+        "nombre": "NUEVO BANCO DEL CHACO S. A."
+    },
+    {
+        "id": 312,
+        "alias": "VOII",
+        "nombre": "BANCO VOII S.A."
+    },
+    {
+        "id": 315,
+        "alias": "Formosa",
+        "nombre": "BANCO DE FORMOSA S.A."
+    },
+    {
+        "id": 319,
+        "alias": "CMF",
+        "nombre": "BANCO CMF S.A."
+    },
+    {
+        "id": 321,
+        "alias": "Santiago del Estero",
+        "nombre": "BANCO DE SANTIAGO DEL ESTERO S.A."
+    },
+    {
+        "id": 322,
+        "alias": "Industrial",
+        "nombre": "BANCO INDUSTRIAL S.A."
+    },
+    {
+        "id": 330,
+        "alias": "Santa Fe",
+        "nombre": "NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA"
+    },
+    {
+        "id": 331,
+        "alias": "CETELEM",
+        "nombre": "BANCO CETELEM ARGENTINA S.A."
+    },
+    {
+        "id": 332,
+        "alias": "Servicios Financieros",
+        "nombre": "BANCO DE SERVICIOS FINANCIEROS S.A."
+    },
+    {
+        "id": 338,
+        "alias": "Servicios y TX",
+        "nombre": "BANCO DE SERVICIOS Y TRANSACCIONES S.A."
+    },
+    {
+        "id": 339,
+        "alias": "RCI Banque",
+        "nombre": "RCI BANQUE S.A."
+    },
+    {
+        "id": 340,
+        "alias": "Credito y Securitizacion",
+        "nombre": "BACS BANCO DE CREDITO Y SECURITIZACION S"
+    },
+    {
+        "id": 341,
+        "alias": "Masventas",
+        "nombre": "BANCO MASVENTAS S.A."
+    },
+    {
+        "id": 384,
+        "alias": "Wilobank",
+        "nombre": "WILOBANK S.A.U."
+    },
+    {
+        "id": 386,
+        "alias": "Entre Rios",
+        "nombre": "NUEVO BANCO DE ENTRE RÍOS S.A."
+    },
+    {
+        "id": 389,
+        "alias": "Columbia",
+        "nombre": "BANCO COLUMBIA S.A."
+    },
+    {
+        "id": 426,
+        "alias": "BICA",
+        "nombre": "BANCO BICA S.A."
+    },
+    {
+        "id": 431,
+        "alias": "Coinag",
+        "nombre": "BANCO COINAG S.A."
+    },
+    {
+        "id": 432,
+        "alias": "Comercio",
+        "nombre": "BANCO DE COMERCIO S.A."
+    },
+    {
+        "id": 435,
+        "alias": "Sucredito Regional",
+        "nombre": "BANCO SUCREDITO REGIONAL S.A.U."
+    },
+    {
+        "id": 448,
+        "alias": "Dino",
+        "nombre": "BANCO DINO S.A."
+    },
+    {
+        "id": 44077,
+        "alias": "Compañia Fciera ARG",
+        "nombre": "COMPAÑIA FINANCIERA ARGENTINA S.A."
+    },
+    {
+        "id": 44088,
+        "alias": "Volkswagen",
+        "nombre": "VOLKSWAGEN FINANCIAL SERVICES COMPAÑIA F"
+    },
+    {
+        "id": 44090,
+        "alias": "IUDU",
+        "nombre": "IUDU COMPAÑÍA FINANCIERA S.A."
+    },
+    {
+        "id": 44092,
+        "alias": "FCA Cia Fciera",
+        "nombre": "FCA COMPAÑIA FINANCIERA S.A."
+    },
+    {
+        "id": 44093,
+        "alias": "GPAT Cia Fciera",
+        "nombre": "GPAT COMPAÑIA FINANCIERA S.A.U."
+    },
+    {
+        "id": 44094,
+        "alias": "MercedesBenz Cia Fciera",
+        "nombre": "MERCEDES-BENZ COMPAÑÍA FINANCIERA ARGENT"
+    },
+    {
+        "id": 44095,
+        "alias": "Rombo Cia Fciera",
+        "nombre": "ROMBO COMPAÑÍA FINANCIERA S.A."
+    },
+    {
+        "id": 44096,
+        "alias": "John Deere Credit",
+        "nombre": "JOHN DEERE CREDIT COMPAÑÍA FINANCIERA S."
+    },
+    {
+        "id": 44098,
+        "alias": "PSA Finance",
+        "nombre": "PSA FINANCE ARGENTINA COMPAÑÍA FINANCIER"
+    },
+    {
+        "id": 44099,
+        "alias": "Toyota Cia Fciera",
+        "nombre": "TOYOTA COMPAÑÍA FINANCIERA DE ARGENTINA"
+    },
+    {
+        "id": 45030,
+        "alias": "Naranja Digital",
+        "nombre": "NARANJA DIGITAL COMPAÑÍA FINANCIERA S.A."
+    },
+    {
+        "id": 45056,
+        "alias": "Montemar Cia Fciera",
+        "nombre": "MONTEMAR COMPAÑIA FINANCIERA S.A."
+    },
+    {
+        "id": 45072,
+        "alias": "Reba",
+        "nombre": "REBA COMPAÑIA FINANCIERA S.A."
+    },
+    {
+        "id": 65203,
+        "alias": "Credito Regional",
+        "nombre": "CREDITO REGIONAL COMPAÑIA FINANCIERA S.A."
+    }
+]
