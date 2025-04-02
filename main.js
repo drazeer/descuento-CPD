@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // DATOS POR DEFECTO
-let tasaAnual = 1.68;
+let tasaAnual = 1.44;
 let tasaMensual = tasaAnual / 12;
 let comChequePorEfectivoDirecto = 0.04;
 let comChequePorEfectivoDiferido = 0.035;
